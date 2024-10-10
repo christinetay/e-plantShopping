@@ -22,7 +22,12 @@ export const CartSlice = createSlice({
     },
     removeItem: (state, action) => {
         const toBeRemoveItem  = action.payload;
+        console.log("CartSlice - removeItem !!!");
+        console.log("state:", state);
+        console.log("action:", action);
+
         const existedItem = state.items.find(item => item.name == toBeRemoveItem.name);
+        console.log("existedItem:", existedItem);
 
         if(existedItem) {
             state.items = state.items.filter(item => item.name != toBeRemoveItem);
@@ -31,8 +36,12 @@ export const CartSlice = createSlice({
     updateQuantity: (state, action) => {
         //get name and amount
         const toBeUpdatedItem  = action.payload;
+        console.log("CartSlice - updateQuantity !!!");
+        console.log("state:", state);
+        console.log("action:", action);
 
         const existedItem = state.items.find(item => item.name == toBeUpdatedItem.name);
+        console.log("existedItem:", existedItem);
         if(existedItem) {
             existedItem.quantity = toBeUpdatedItem.quantity;
         }
