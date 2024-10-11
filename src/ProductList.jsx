@@ -263,7 +263,7 @@ const handlePlantsClick = (e) => {
     }));
     handleTotalCountInCart("+");
     //dispatch
-    //addtocart state
+    //addtocart statef
   }
 
   const handleTotalCountInCart = (action) => {
@@ -274,6 +274,8 @@ const handlePlantsClick = (e) => {
         newCount = newCount - 1;
     setTotalCoutInCart(newCount);
   }
+
+  console.log("addedToCart:", addedToCart);
 
     return (
         <div>
@@ -304,19 +306,28 @@ const handlePlantsClick = (e) => {
         <div className="product-grid">
             {plantsArray.map((category, index) => (
                 <div className="product-grid" key={index}>
-                    <h1>{category.category}</h1>
+                    <h1 class="category-title">{category.category}</h1>
                     <div className="product-list">
                         {category.plants.map((plant, plantIndex) => (
                             <div className='product-card' key={plantIndex}>
+                                <div className='product-title'>{plant.name}</div>
                                 <img className='product-image' 
                                     src={plant.image} 
                                     alt={plant.image} />
-                                <div className='product-title'>{plant.name}</div>
-                                <div className='product-title'>{plant.description}</div>
-                                <div className='product-title'>{plant.cost}</div>
+                                <div className='product-price'>{plant.cost}</div>
+                                <div className='plantname_heading'>{plant.description}</div>
+                                
+                                {!addedToCart[plant.name]? 
+                                (
                                 <button className='product-button' onClick={() => handleAddToCart(plant)}>
-                                    Add to Cart
+                                Add to Cart
                                 </button>
+                                ):
+                                (
+                                <button className='product-button added-to-cart' disabled>
+                                    Added to Cart
+                                </button>
+                                )}
                             </div>
                         ))}
                     </div>
